@@ -1,12 +1,16 @@
 import justpy as jp
+from WebApp import layout
+from WebApp import page
 
 
-class About:
+class About(page.Page):
     path = '/about'
 
     def serve(self):
         wp = jp.QuasarPage(tailwind=True)
-        div = jp.Div(a=wp, classes='bg-gray-200 h-screen')
+        lay = layout.DefaultLayout(a=wp)
+        container = jp.QPageContainer(a=lay)
+        div = jp.Div(a=container, classes='bg-gray-200 h-screen')
         jp.Div(a=div, text='This is the About page',
                classes='text-4xl m-2')
         jp.Div(a=div, text="""
@@ -18,5 +22,3 @@ class About:
         and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         """, classes='text-lg')
         return wp
-
-
